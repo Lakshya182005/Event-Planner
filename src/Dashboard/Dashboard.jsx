@@ -7,7 +7,7 @@ import Eventlist from './Eventlist'
 function Dashboard(props) {
   return (
     <div>
-        <Header checkToday={props.handleToday} today ={props.today} checkAdd={props.handleAdd}/>
+        <Header handleToday={props.handleToday} today ={props.today} handleAdd={props.handleAdd}/>
         <Intro data={{total:20,done:10,notdone:10}}/>
         <Eventlist  today={props.today}/>
 

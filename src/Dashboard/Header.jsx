@@ -9,16 +9,14 @@ function Header(props) {
         
 
         <div>
-          <button onClick={()=>{props.checkToday(!props.today)}}>Today</button>
-          <button onClick={()=>{props.checkAdd(true)}}>Add Events</button>
+          <button onClick={()=>{props.handleToday(!props.today)}}>Today</button>
+          <button onClick={()=>{props.handleAdd(true)}}>Add Events</button>
         </div>
       </div>
       <div style={{ padding: "10px" }}>
         <h1>Lakshya's Event Planner</h1>
       </div>
-      <div style={{ padding: "10px" }}>
-        <input type="search" placeholder="Search Events" />
-      </div>
+      
     </div>
   );
 }
