@@ -1,4 +1,7 @@
-let Data = [
+
+  import React, { createContext, useContext, useState } from 'react';
+
+  const initialData = [
     {
       event: "Tech Talk on Cybersecurity",
       date: "2025-04-15T09:00:00Z",
@@ -467,20 +470,33 @@ let Data = [
       status: "Scheduled",
       participants: ["Cameron Williams", "Diana Carter", "Ella Patel"]
     }
-  ]
-
-
-  export function impData(){
-    return Data
-  }
-  export function addEvent(event) {
-    Data.push(event);
+  ];
+  
+  const EventContext = createContext();
+  
+  export function EventProvider({ children }) {
+    const [events, setEvents] = useState(initialData);
+  
+    const addEvent = (newEvent) => {
+      setEvents(prev => [...prev, newEvent]);
+    };
+  
+    const updateEvent = (index, updatedData) => {
+      setEvents(prev => prev.map((event, i) => 
+        i === index ? { ...event, ...updatedData } : event
+      ));
+    };
+  
+    const deleteEvent = (index) => {
+      setEvents(prev => prev.filter((_, i) => i !== index));
+    };
+  
+    return (
+      <EventContext.Provider value={{ events, addEvent, updateEvent, deleteEvent }}>
+        {children}
+      </EventContext.Provider>
+    );
   }
   
-  export function updateEvent(index, updatedData) {
-    Data[index] = { ...Data[index], ...updatedData };
-  }
+  export const useEvents = () => useContext(EventContext);
   
-  export function deleteEvent(index) {
-    Data.splice(index, 1);
-  }
