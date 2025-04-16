@@ -48,7 +48,7 @@ function AddEvent(props) {
                 <label>Open for Registration</label>
                 <input type='text' name="organizer" placeholder="Organiser" onChange={handleChange} />
             </form>
-            <button onClick={theSubmit}>Go Back</button>
+            <button onClick={theSubmit}> Add Event & Go Back</button>
         </div>
     );
 }
