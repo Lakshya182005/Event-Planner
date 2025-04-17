@@ -9,7 +9,7 @@ function Eventlist(props) {
     const [data, setData] = useState(events)
     const [todayData, setTodayData] = useState(events)
     const backup = events
-    
+
 
     const totalEvents = data.length
     const openEvents = data.filter(event => event.status === "Open for Registration").length
@@ -57,7 +57,7 @@ function Eventlist(props) {
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
                 {data.map((ele, ind) => (
-                    <EventCard key={ind} data={ele} index ={ind} />
+                    <EventCard key={ind} data={ele} index ={ind} setEditIndex={props.setEditIndex} handleEdit={props.handleEdit} />
                 ))}
             </div>
         </div>

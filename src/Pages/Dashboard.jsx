@@ -1,6 +1,6 @@
 import React from 'react'
-import Header from './Header'
-import Eventlist from './Eventlist'
+import Header from '../components/Header'
+import Eventlist from '../components/Eventlist'
 
 function Dashboard(props) {
   return (
@@ -10,7 +10,7 @@ function Dashboard(props) {
             today={props.today} 
             handleAdd={props.handleAdd} 
         />
-        <Eventlist today={props.today} />
+        <Eventlist today={props.today} setEditIndex={props.setEditIndex} handleEdit = {props.handleEdit}  />
     </div>
   )
 }
