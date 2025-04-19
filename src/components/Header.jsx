@@ -1,21 +1,28 @@
 import React from 'react';
 function Header(props) {
   return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
-        <img src="src/Assets/01_Logo.png" style={{ height: "2rem", width: "2rem" }} alt="logo" />
+    <div className="bg-[#640D5F] text-white p-4 shadow-md">
+      <div className="flex justify-between items-center">
+      <div className="p-4 flex items-center">
+      <img src="src/Assets/01_Logo.png" className="h-15 w-15"  alt="logo" />
+      <h1 className="text-2xl font-bold">Lakshya's Event Planner</h1>
+      
+      </div>
+        
 
         
         
 
-        <div>
-          <button onClick={()=>{props.handleToday(!props.today)}}>Today</button>
-          <button onClick={()=>{props.handleAdd(true)}}>Add Events</button>
+        <div className="space-x-2">
+          <button onClick={()=>{props.handleToday(!props.today)}} className="bg-[#321922] hover:bg-[#EB5B00] text-white px-4 py-1 rounded-md transition">
+          Today
+          </button>
+          <button onClick={()=>{props.handleAdd(true)}} className="bg-[#FFB200] hover:bg-[#EB5B00] text-[#640D5F] px-4 py-1 rounded-md transition">
+          Add Events
+          </button>
         </div>
       </div>
-      <div style={{ padding: "10px" }}>
-        <h1>Lakshya's Event Planner</h1>
-      </div>
+      
       
     </div>
   );

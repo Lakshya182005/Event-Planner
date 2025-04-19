@@ -1,5 +1,6 @@
 
 import React from "react";
+import "./index.css"
 import Dashboard from "./Pages/Dashboard"
 import Login from "./Pages/Login"
 import {useState} from "react"

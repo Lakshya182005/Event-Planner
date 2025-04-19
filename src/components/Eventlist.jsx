@@ -26,40 +26,55 @@ function Eventlist(props) {
     }, [props.today, events])
 
     function changeSearch(e) {
-        const value = e.target.value.toLowerCase()
-        setSearch(value)
-        if (search === "" && !props.today) {
-          setData(backup);
-          return;
-        } else if (props.today && search !== '') {
-          const filt = data.filter((ele) =>
-            ele.event.toLowerCase().includes(search)
-          );
-          setData(filt);
-        } else if (!props.today && search !== "") {
-          const filt = backup.filter((ele) =>
-            ele.event.toLowerCase().includes(search)
-          );
-          setData(filt);
-        } else {
-          const filt = todayData.filter((ele) =>
-            ele.event.toLowerCase().includes(search)
-          );
-          setData(filt);
-        }
+      setSearch(e.target.value);
+    }
+
+    function handleSearch() {
+      const value = search.toLowerCase();
+    
+      if (value == "" && !props.today) {
+        setData(backup);
+      } else if (props.today && value != "") {
+        const filt = todayData.filter((ele) =>
+          ele.event.toLowerCase().includes(value)
+        );
+        setData(filt);
+      } else if (!props.today && value != "") {
+        const filt = backup.filter((ele) =>
+          ele.event.toLowerCase().includes(value)
+        );
+        setData(filt);
+      } else {
+        const filt = todayData.filter((ele) =>
+          ele.event.toLowerCase().includes(value)
+        );
+        setData(filt);
+      }
     }
 
     return (
-        <div>
+        <div className="p-4 bg-gray-50 min-h-screen">
+
             <Intro data={{ total: totalEvents, open: openEvents }} />
-            <div style={{ padding: "10px" }}>
-                <input type="text" placeholder="Search Events" onChange={changeSearch} />
+
+            <div className="p-4">
+
+                <input type="text" placeholder="Search Events" onChange={changeSearch}     className="flex-grow p-2 border-2 border-[#FFB200] rounded-md focus:outline-none focus:ring-2 focus:ring-[#EB5B00]"/>
+
+                <button onClick={handleSearch} className="bg-[#FFB200] hover:bg-[#EB5B00] text-[#640D5F] font-semibold px-4 py-2 rounded-md transition">
+                  Search
+                </button>
+
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+
                 {data.map((ele, ind) => (
                     <EventCard key={ind} data={ele} index ={ind} setEditIndex={props.setEditIndex} handleEdit={props.handleEdit} />
                 ))}
+
             </div>
+
         </div>
     )
 }
