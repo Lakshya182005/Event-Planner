@@ -4,7 +4,7 @@ function Header(props) {
     <div className="bg-[#640D5F] text-white p-4 shadow-md">
       <div className="flex justify-between items-center">
       <div className="p-4 flex items-center">
-      <img src="src/Assets/01_Logo.png" className="h-15 w-15"  alt="logo" />
+      <img src="01_Logo.png" className="h-15 w-15"  alt="logo" />
       <h1 className="text-2xl font-bold">Lakshya's Event Planner</h1>
       
       </div>
