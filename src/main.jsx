@@ -1,14 +1,16 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-import App from './App.jsx'
-import { EventProvider } from './Data.jsx'
+import App from "./App.jsx";
+import { EventProvider } from "./Data.jsx";
+import { ProposeProvider } from "./Proposed.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <EventProvider>
-    <App />
+      <ProposeProvider>
+        <App />
+      </ProposeProvider>
     </EventProvider>
-    
-  </StrictMode>,
-)
+  </StrictMode>
+);

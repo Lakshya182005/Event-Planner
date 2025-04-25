@@ -1,13 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useEvents } from "../Data";
+import React, { useRef, useState } from "react";
+import { useProposal } from "../Proposed";
 
-function EditEvent(props) {
-  const { updateEvent } = useEvents();
-  const { events } = useEvents();
-
-  let currEvent = events[props.eventIndex];
-  console.log(currEvent);
-
+function ProposeEvent(props) {
+  const { addProps } = useProposal();
   const eventRef = useRef();
   const dateRef = useRef();
   const locationRef = useRef();
@@ -15,27 +10,10 @@ function EditEvent(props) {
   const descriptionRef = useRef();
   const schedulingRadioRef = useRef();
   const openRadioRef = useRef();
-  const [participants, setParticipants] = useState(
-    currEvent.participants || []
-  );
-
-  useEffect(() => {
-    eventRef.current.value = currEvent.event;
-    dateRef.current.value = currEvent.date;
-    locationRef.current.value = currEvent.location;
-    organizerRef.current.value = currEvent.organizer;
-    descriptionRef.current.value = currEvent.description;
-    eventRef.current.value = currEvent.event;
-
-    if (currEvent.status === "open for registration") {
-      openRadioRef.current.checked = true;
-    } else {
-      schedulingRadioRef.current.checked = true;
-    }
-  }, [currEvent]);
+  let [participants, setParticipants] = useState([]);
 
   function theSubmit() {
-    updateEvent(props.eventIndex, {
+    const newEvent = {
       event: eventRef.current.value,
       date: dateRef.current.value,
       location: locationRef.current.value,
@@ -44,17 +22,26 @@ function EditEvent(props) {
       status: schedulingRadioRef.current.checked
         ? "Scheduling"
         : "open for registration",
-      participants: participants.filter((p) => p.trim() !== "")
-    });
+      participants: participants
+    };
 
-    props.cancelEdit();
+    addProps(newEvent);
+
+    eventRef.current.value = "";
+    dateRef.current.value = "";
+    locationRef.current.value = "";
+    organizerRef.current.value = "";
+    descriptionRef.current.value = "";
+    schedulingRadioRef.current.checked = true;
+    setParticipants([]);
+    props.setaddmore(!props.addmore);
   }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl p-6 overflow-y-auto max-h-screen">
         <h2 className="text-2xl font-bold text-[#640D5F] mb-6">
-          Editing Event
+          Propose New Event
         </h2>
         <form className="space-y-4" onSubmit={theSubmit}>
           <input
@@ -176,9 +163,8 @@ function EditEvent(props) {
           </section>
 
           <div className="flex justify-end pt-4">
-            <button
-              onClick={() => {
-                props.cancelEdit();
+            <button onClick={() => {
+                props.setaddmore(!props.addmore);
               }}
             >
               Go Back
@@ -186,7 +172,7 @@ function EditEvent(props) {
             <input
               type="submit"
               className="bg-[#640D5F] hover:bg-[#D91656] text-white font-bold py-2 px-6 rounded-md transition"
-              value="Save Changes"
+              value="Propose Event & Go Back"
             />
           </div>
         </form>
@@ -195,4 +181,4 @@ function EditEvent(props) {
   );
 }
 
-export default EditEvent;
+export default ProposeEvent;
