@@ -27,38 +27,41 @@ function EventCard(props) {
       <h4 className="text-[#EB5B00]">{formattedDate}</h4>
       <h3 className="text-[#FFB200]">{props.data.location}</h3>
       <p className="text-gray-600 my-2">{props.data.description}</p>
-      <button
-        onClick={() => {
-          alert(props.data.participants);
-        }}
-        className="bg-[#640D5F] hover:bg-[#D91656] text-white px-3 py-1 text-sm rounded"
-      >
-        Participants
-      </button>
+      <div className="flex gap-2 flex-wrap">
+        <button
+          onClick={() => {
+            alert(props.data.participants);
+          }}
+          className="bg-[#640D5F] hover:bg-[#D91656] text-white px-3 py-1 text-sm rounded"
+        >
+          Participants
+        </button>
 
-      {!isStudent ? (
-        <>
-          <button
-            onClick={() => {
-              props.handleEdit(true);
-              props.setEditIndex(props.index);
-            }}
-            className="bg-[#FFB200] hover:bg-[#EB5B00] text-[#640D5F] px-3 py-1 text-sm rounded"
-          >
-            Edit Event
-          </button>
-          <button
-            onClick={() => {
-              deleteEvent(props.index);
-            }}
-            className="bg-[#D91656] hover:bg-[#EB5B00] text-white px-3 py-1 text-sm rounded"
-          >
-            Delete Event
-          </button>
-        </>
-      ) : (
-        <></>
-      )}
+        {!isStudent ? (
+          <>
+            <button
+              onClick={() => {
+                props.handleEdit(true);
+                props.setEditIndex(props.index);
+              }}
+              className="bg-[#FFB200] hover:bg-[#EB5B00] text-[#640D5F] px-3 py-1 text-sm rounded"
+            >
+              Edit Event
+            </button>
+            <button
+              onClick={() => {
+                deleteEvent(props.index);
+                alert(`EVENT ${props.data.event} DELETED SUCCESSFULLY!!`);
+              }}
+              className="bg-[#D91656] hover:bg-[#EB5B00] text-white px-3 py-1 text-sm rounded"
+            >
+              Delete Event
+            </button>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 }

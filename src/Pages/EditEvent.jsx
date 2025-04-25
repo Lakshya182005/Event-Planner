@@ -21,7 +21,7 @@ function EditEvent(props) {
 
   useEffect(() => {
     eventRef.current.value = currEvent.event;
-    dateRef.current.value = currEvent.date;
+    dateRef.current.value = currEvent.date.slice(0, 16);
     locationRef.current.value = currEvent.location;
     organizerRef.current.value = currEvent.organizer;
     descriptionRef.current.value = currEvent.description;
@@ -46,7 +46,7 @@ function EditEvent(props) {
         : "open for registration",
       participants: participants.filter((p) => p.trim() !== "")
     });
-
+    alert(`EVENT ${eventRef.current.value} EDITED SUCCESSFULLY!!`);
     props.cancelEdit();
   }
 
@@ -180,6 +180,7 @@ function EditEvent(props) {
               onClick={() => {
                 props.cancelEdit();
               }}
+              className="text-[#640D5F] hover:text-[#D91656] font-medium mr-4"
             >
               Go Back
             </button>

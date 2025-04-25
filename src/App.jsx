@@ -15,7 +15,6 @@ function App() {
   let [editing, setEditing] = useState(false);
   let [editIndex, setEditIndex] = useState(null);
   let { isStudent } = useEvents();
-  
 
   function log(isloggedin, addmore, today) {
     if (addmore && isloggedin && isStudent) {

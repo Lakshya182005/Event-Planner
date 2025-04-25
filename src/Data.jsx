@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const initialData = [
   {
@@ -503,7 +503,10 @@ const initialData = [
 const EventContext = createContext();
 
 export function EventProvider({ children }) {
-  const [events, setEvents] = useState(initialData);
+  const [events, setEvents] = useState(() => {
+    const stored = localStorage.getItem("eventData");
+    return stored ? JSON.parse(stored) : initialData;
+  });
 
   const addEvent = (newEvent) => {
     setEvents((prev) => [newEvent, ...prev]);
@@ -522,6 +525,10 @@ export function EventProvider({ children }) {
   };
 
   const [isStudent, setStudent] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("eventData", JSON.stringify(events));
+  }, [events]);
 
   return (
     <EventContext.Provider

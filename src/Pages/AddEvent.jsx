@@ -26,7 +26,7 @@ function AddEvent(props) {
     };
 
     addEvent(newEvent);
-
+    alert(`EVENT ${eventRef.current.value} ADDED SUCCESSFULLY!!`);
     eventRef.current.value = "";
     dateRef.current.value = "";
     locationRef.current.value = "";
@@ -167,6 +167,7 @@ function AddEvent(props) {
               onClick={() => {
                 props.setaddmore(!props.addmore);
               }}
+              className="text-[#640D5F] hover:text-[#D91656] font-medium mr-4"
             >
               Go Back
             </button>

@@ -25,6 +25,8 @@ function ProposeEvent(props) {
       participants: participants
     };
 
+    alert(`EVENT ${eventRef.current.value} PROPOSED SUCCESSFULLY!!`);
+
     addProps(newEvent);
 
     eventRef.current.value = "";
@@ -163,16 +165,18 @@ function ProposeEvent(props) {
           </section>
 
           <div className="flex justify-end pt-4">
-            <button onClick={() => {
+            <button
+              onClick={() => {
                 props.setaddmore(!props.addmore);
               }}
+              className="text-[#640D5F] hover:text-[#D91656] font-medium mr-4"
             >
               Go Back
             </button>
             <input
               type="submit"
               className="bg-[#640D5F] hover:bg-[#D91656] text-white font-bold py-2 px-6 rounded-md transition"
-              value="Propose Event & Go Back"
+              value="Propose Event"
             />
           </div>
         </form>

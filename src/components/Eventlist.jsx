@@ -65,7 +65,7 @@ function Eventlist(props) {
           type="text"
           placeholder="Search Events"
           onChange={changeSearch}
-          className="flex-grow p-2 border-2 border-[#FFB200] rounded-md focus:outline-none focus:ring-2 focus:ring-[#EB5B00]"
+          className="flex-grow p-2 border-2 border-[#FFB200] rounded-md focus:outline-none focus:ring-2 focus:ring-[#EB5B00] w-3xs"
         />
 
         <button
@@ -77,20 +77,24 @@ function Eventlist(props) {
       </div>
       <div>
         <div>
-            <div>
-              {proposal.length!==0
-              ?<h1>Proposed Events</h1>
-              :<></>}
-              <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
-                {proposal.map((ele, ind) => {
-                  return <ProposalCard key={ind} data={ele} index={ind} />;
-                })}
-              </div>
+          <div>
+            {proposal.length !== 0 ? (
+              <h1 className="text-2xl font-bold text-[#640D5F] mb-4">
+                Proposed Events
+              </h1>
+            ) : (
+              <></>
+            )}
+            <div className="flex overflow-x-auto space-x-4 scrollbar-hide">
+              {proposal.map((ele, ind) => {
+                return <ProposalCard key={ind} data={ele} index={ind} />;
+              })}
             </div>
+          </div>
         </div>
       </div>
 
-      <h1>All Events</h1>
+      <h1 className="text-2xl font-bold text-[#640D5F] mb-4">All Events</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {data.map((ele, ind) => (
